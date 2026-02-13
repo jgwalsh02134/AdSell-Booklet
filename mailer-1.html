@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdSell.ai Production Brochures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1B2A4A;
+            --dark-navy: #0E1628;
+            --blue: #2563EB;
+            --green: #22C55E;
+            --slate: #64748B;
+            --light-gray: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #555; /* Dark background for screen viewing */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* Print Settings */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+                margin: 0;
+                display: block;
+            }
+            .screen-only {
+                display: none !important;
+            }
+            .page-break {
+                break-after: page;
+                page-break-after: always;
+            }
+            /* Force background colors */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        /* --- Shared Components --- */
+        .cta-btn {
+            background-color: var(--blue);
+            color: white;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .qr-box {
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: start;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: var(--navy);
+        }
+        .check-icon {
+            color: var(--green);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* --- TRI-FOLD (11x8.5) --- */
+        .trifold-sheet {
+            width: 11in;
+            height: 8.5in;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* 3 Panels */
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .panel {
+            padding: 0.35in;
+            position: relative;
+            border-right: 1px dashed #ddd; /* Fold line guide (remove for final) */
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        .panel:last-child { border-right: none; }
+
+        @media print {
+            .trifold-sheet { box-shadow: none; }
+            .panel { border-right: none; }
+        }
+
+        /* --- BI-FOLD (9x12) --- */
+        .bifold-sheet {
+            width: 12in; /* Rotated for flat view, but content handles orientation */
+            height: 9in;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Left and Right halves for the flat view */
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        
+        /* Note: For the 9x12 Bi-Fold, the DMM usually implies a vertical fold or horizontal. 
+           Based on prompt "9W x 12H flat, folds to 9W x 6H", this is a vertical flat folded horizontally. 
+           So on screen, we represent it as a tall rectangle 9x12. */
+        
+        .bifold-vertical-sheet {
+            width: 9in;
+            height: 12in;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .bifold-half {
+            height: 6in;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px dashed #ddd;
+        }
+        @media print {
+            .bifold-vertical-sheet { box-shadow: none; }
+            .bifold-half { border-bottom: none; }
+        }
+
+        /* Typography & Utilities */
+        .bg-navy { background-color: var(--navy); color: white; }
+        .bg-dark-navy { background-color: var(--dark-navy); color: white; }
+        .text-green { color: var(--green); }
+        .text-blue { color: var(--blue); }
+        .text-navy { color: var(--navy); }
+        .border-blue { border-bottom: 3px solid var(--blue); }
+        
+        .map-overlay {
+            mix-blend-mode: screen; /* Helps transparent map pop on dark */
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="screen-only text-white text-center mb-4">
+        <h1 class="text-2xl font-bold">AdSell.ai Brochure Proofs</h1>
+        <p>Use "Print to PDF" (Ctrl+P) with "Background Graphics" enabled.</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TRI-FOLD OUTSIDE (Panels A, B, C)          -->
+    <!-- ========================================== -->
+    <div class="trifold-sheet">
+        
+        <!-- PANEL A (Left - Flap): How It Works -->
+        <div class="panel bg-light-gray">
+            <h3 class="text-navy font-bold text-xl mb-4 border-blue inline-block pb-1">How It Works</h3>
+            
+            <div class="space-y-4 text-xs text-navy">
+                <div class="flex gap-3">
+                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">1</div>
+                    <div>
+                        <strong class="block">Choose Your Markets</strong>
+                        <span class="text-slate-500">Browse by state, metro, or demo. AI recommends matches.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">2</div>
+                    <div>
+                        <strong class="block">Upload Creative</strong>
+                        <span class="text-slate-500">Real-time spec verification.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">3</div>
+                    <div>
+                        <strong class="block">Submit to All at Once</strong>
+                        <span class="text-slate-500">One action sends campaigns everywhere.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">4</div>
+                    <div>
+                        <strong class="block">Real-Time Approvals</strong>
+                        <span class="text-slate-500">Publishers approve in-platform. Typically < 1 hr.</span>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">5</div>
+                    <div>
+                        <strong class="block">Launch & Optimize</strong>
+                        <span class="text-slate-500">Monitor from one dashboard.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-auto bg-navy rounded-lg p-3 text-white text-center">
+                <p class="font-bold text-sm mb-1">Get Started Free</p>
+                <p class="text-xs text-green font-mono mb-2">No credit card required</p>
+                <div class="bg-white rounded p-1 inline-block">
+                    <!-- QR CODE -->
+                    <img src="Untitled (300 x 300 px).png" alt="QR" class="w-16 h-16">
+                </div>
+                <p class="text-xs mt-1 font-bold">adsell.ai</p>
+            </div>
+        </div>
+
+        <!-- PANEL B (Center): Address / Indicia -->
+        <div class="panel bg-white flex flex-col justify-between relative">
+            <!-- Indicia Top Right -->
+            <div class="absolute top-4 right-4 border border-navy p-2 w-24 h-20 text-[0.6rem] text-center flex flex-col justify-center leading-tight">
+                PRESORTED<br>STANDARD<br>U.S. POSTAGE PAID<br>ADSELL.AI
+            </div>
+
+            <!-- Return Address Top Left -->
+            <div class="absolute top-4 left-4 text-[0.65rem] font-bold text-navy leading-tight">
+                AdSell.ai<br>
+                38 Mall Way #422<br>
+                West Sand Lake, NY 12196
+            </div>
+
+            <!-- Teaser -->
+            <div class="mt-24 pl-4 pr-12">
+                <h2 class="text-xl font-bold text-blue-600 leading-tight">One platform.<br>Every publication.<br>Minutes.</h2>
+                <p class="text-xs text-slate-500 mt-2">See how to reach ~5,400 local markets inside.</p>
+            </div>
+
+            <!-- Recipient Area -->
+            <div class="mt-auto mb-16 ml-8 p-4 bg-slate-50 border border-slate-200 rounded min-h-[100px]">
+                <p class="text-xs text-slate-400 font-mono">TO THE MARKETING TEAM AT:</p>
+                <!-- Placeholder for Variable Data -->
+            </div>
+
+            <!-- Barcode Clear Zone -->
+            <div class="bg-slate-100 h-10 w-full absolute bottom-0 left-0 flex items-center justify-center text-[0.5rem] text-slate-400">
+                ******* BARCODE CLEAR ZONE *******
+            </div>
+        </div>
+
+        <!-- PANEL C (Right - Cover): Hero -->
+        <div class="panel bg-dark-navy relative overflow-hidden">
+             <!-- Top Bar -->
+             <div class="absolute top-0 left-0 w-full h-1 bg-blue-600 z-20"></div>
+             
+             <!-- Header -->
+             <div class="flex justify-between items-center mb-6 pt-4 z-20 relative">
+                 <img src="Untitled (1200 x 200 px).png" class="h-6 w-auto brightness-200 contrast-200 grayscale" style="filter: brightness(10) grayscale(1);" alt="Logo">
+                 <span class="text-blue-400 font-bold text-sm">adsell.ai</span>
+             </div>
+
+             <!-- Headline -->
+             <h1 class="text-3xl font-extrabold text-white leading-tight mb-2 z-20 relative">
+                 Reach Any Local Community <span class="text-green border-b-4 border-green">Nationwide.</span>
+             </h1>
+             <p class="text-slate-300 text-xs mb-6 z-20 relative">
+                 Place ads in newspapers and magazines across the country from one AI-powered platform.
+             </p>
+
+             <!-- Map Background -->
+             <img src="us_news_map_transparent_4000x2400_map_crisp.png" class="absolute top-32 -right-10 w-[140%] opacity-40 map-overlay z-10" alt="Map">
+
+             <!-- Market Stat -->
+             <div class="relative z-20 mb-6">
+                 <p class="text-white text-xs uppercase tracking-wide opacity-70">The U.S. Local Print Market</p>
+                 <p class="text-4xl font-black text-green">~5,400</p>
+                 <p class="text-white text-xs">Active Newspapers & Magazines</p>
+             </div>
+
+             <!-- Features -->
+             <div class="grid grid-cols-2 gap-2 relative z-20 text-[0.65rem] text-slate-200 mb-6">
+                 <div class="border-l-2 border-blue-500 pl-2">Minutes, not weeks</div>
+                 <div class="border-l-2 border-blue-500 pl-2">Transparent Pricing</div>
+                 <div class="border-l-2 border-blue-500 pl-2">Real-time Approvals</div>
+                 <div class="border-l-2 border-blue-500 pl-2">AI Optimization</div>
+             </div>
+
+             <!-- Bottom CTA -->
+             <div class="mt-auto bg-blue-600 -mx-4 -mb-4 p-4 text-center z-20 relative">
+                 <div class="flex items-center justify-center gap-3">
+                     <div class="bg-white p-1 rounded">
+                         <img src="Untitled (300 x 300 px).png" class="w-10 h-10">
+                     </div>
+                     <div class="text-left">
+                         <p class="text-white font-bold text-sm">Get Started Free</p>
+                         <p class="text-blue-200 text-xs">Scan or visit adsell.ai</p>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ========================================== -->
+    <!-- TRI-FOLD INSIDE (Panels D, E, F)           -->
+    <!-- ========================================== -->
+    <div class="trifold-sheet">
+        
+        <!-- PANEL D (Left): Stats -->
+        <div class="panel bg-dark-navy text-white">
+            <h3 class="font-bold text-lg mb-4 border-b border-green pb-1 inline-block">Local Print Outperforms</h3>
+            
+            <div class="space-y-3 mb-6">
+                <div class="bg-navy p-3 border-l-4 border-green rounded-r">
+                    <p class="text-2xl font-bold text-green">82%</p>
+                    <p class="text-[0.65rem] text-slate-300">of consumers trust print ads</p>
+                </div>
+                <div class="bg-navy p-3 border-l-4 border-green rounded-r">
+                    <p class="text-2xl font-bold text-green">9x</p>
+                    <p class="text-[0.65rem] text-slate-300">higher response rate vs. digital</p>
+                </div>
+                <div class="bg-navy p-3 border-l-4 border-green rounded-r">
+                    <p class="text-2xl font-bold text-green">80%</p>
+                    <p class="text-[0.65rem] text-slate-300">of consumers act on print ads</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-900/50 p-3 rounded border border-blue-800">
+                <h4 class="text-sm font-bold text-blue-300 mb-2">Print + Digital = Impact</h4>
+                <div class="grid grid-cols-2 gap-2 text-center">
+                    <div>
+                        <span class="block text-lg font-bold text-white">400%</span>
+                        <span class="text-[0.6rem] text-blue-200">More Effective</span>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-bold text-white">125%</span>
+                        <span class="text-[0.6rem] text-blue-200">ROI</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-auto text-[0.6rem] text-slate-500 italic">Sources: Industry research averages. Figures represent aggregate performance.</p>
+        </div>
+
+        <!-- PANEL E (Center): Coverage / Targeting -->
+        <div class="panel bg-white">
+            <h3 class="text-navy font-bold text-lg mb-1">Nationwide Coverage</h3>
+            <p class="text-xs text-slate-500 mb-4">Connect to ~5,400 publishers instantly.</p>
+            
+            <!-- Map Container -->
+            <div class="w-full h-32 relative mb-4 bg-navy rounded overflow-hidden">
+                 <img src="us_news_map_transparent_4000x2400_map_crisp.png" class="w-full h-full object-contain map-overlay" alt="Map">
+            </div>
+
+            <h4 class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-2">Precision Targeting</h4>
+            <div class="grid grid-cols-2 gap-2 text-[0.65rem] text-navy mb-4">
+                <div class="bg-slate-50 p-2 rounded">
+                    <strong>Geographic</strong><br>State, Metro, Urban/Rural
+                </div>
+                <div class="bg-slate-50 p-2 rounded">
+                    <strong>Demographic</strong><br>Income, Age, Education
+                </div>
+                <div class="bg-slate-50 p-2 rounded">
+                    <strong>Lifestyle</strong><br>Travel, Culinary, Golf
+                </div>
+                <div class="bg-slate-50 p-2 rounded">
+                    <strong>Economic</strong><br>Affluent, High-Growth
+                </div>
+            </div>
+
+            <h4 class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1">Reach Your Customer</h4>
+            <ul class="text-[0.65rem] text-slate-600 space-y-1 list-disc pl-3">
+                <li>Affluent Homeowners</li>
+                <li>Health-Conscious Consumers</li>
+                <li>Local Families & Communities</li>
+            </ul>
+        </div>
+
+        <!-- PANEL F (Right): Checklist / CTA -->
+        <div class="panel bg-light-gray">
+            <h3 class="text-navy font-bold text-lg mb-4">What You Get</h3>
+            
+            <div class="space-y-2 mb-6">
+                <div class="check-item"><span class="check-icon">✓</span> <span>Single submission, multiple pubs</span></div>
+                <div class="check-item"><span class="check-icon">✓</span> <span>Real-time approvals (< 1 hr)</span></div>
+                <div class="check-item"><span class="check-icon">✓</span> <span>Consolidated billing (1 invoice)</span></div>
+                <div class="check-item"><span class="check-icon">✓</span> <span>AI-Powered Optimization</span></div>
+                <div class="check-item"><span class="check-icon">✓</span> <span>No hidden agency fees</span></div>
+            </div>
+
+            <div class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 mb-4">
+                <h4 class="font-bold text-navy text-sm">Sound Familiar?</h4>
+                <p class="text-[0.65rem] text-slate-500 mt-1">
+                    Buying local print usually means weeks of emails, separate invoices, and chasing specs.
+                </p>
+                <p class="text-xs font-bold text-blue-600 mt-2">AdSell.ai eliminates the friction.</p>
+            </div>
+
+            <div class="mt-auto text-center">
+                <div class="inline-block bg-navy text-white p-3 rounded-lg w-full">
+                    <p class="font-bold text-sm mb-2">Create Free Account</p>
+                    <img src="Untitled (300 x 300 px).png" class="w-20 h-20 mx-auto rounded bg-white p-1">
+                    <p class="text-xs mt-2 font-mono text-green">adsell.ai</p>
+                </div>
+                <p class="text-[0.5rem] text-slate-400 mt-2">518.469.9107 • info@adsell.ai</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ========================================== -->
+    <!-- BI-FOLD VERTICAL (9x12 Flat)               -->
+    <!-- ========================================== -->
+    
+    <!-- OUTSIDE (Top: Cover, Bottom: Address) -->
+    <div class="bifold-vertical-sheet">
+        
+        <!-- COVER (Top Half) -->
+        <div class="bifold-half bg-dark-navy relative overflow-hidden flex flex-col p-8">
+            <div class="absolute top-0 left-0 w-full h-2 bg-blue-600 z-20"></div>
+            
+            <!-- Logo Header -->
+            <div class="flex justify-between items-center mb-6 z-20">
+                <img src="Untitled (1200 x 200 px).png" class="h-10 w-auto brightness-200 contrast-200 grayscale" style="filter: brightness(10) grayscale(1);" alt="Logo">
+                <span class="text-slate-400 text-sm tracking-wide">AI-Powered Print Advertising</span>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 z-20">
+                <h1 class="text-5xl font-extrabold text-white leading-tight mb-4">
+                    Reach Any Local<br>Community <span class="text-green border-b-4 border-green">Nationwide.</span>
+                </h1>
+                <p class="text-slate-300 text-lg max-w-md">
+                    Place ads in newspapers and magazines across the country from one AI-powered platform.
+                </p>
+            </div>
+
+            <!-- Footer Stats -->
+            <div class="grid grid-cols-2 gap-8 z-20 mt-6 border-t border-slate-700 pt-6">
+                <div>
+                    <p class="text-4xl font-black text-green">~5,400</p>
+                    <p class="text-slate-400 text-xs uppercase tracking-wider">Active Publications</p>
+                </div>
+                <div class="flex items-center gap-4">
+                     <div class="bg-white p-1 rounded shrink-0">
+                         <img src="Untitled (300 x 300 px).png" class="w-14 h-14">
+                     </div>
+                     <div>
+                         <p class="text-white font-bold">Get Started</p>
+                         <p class="text-blue-400 text-sm">adsell.ai</p>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Map BG -->
+            <img src="us_news_map_transparent_4000x2400_map_crisp.png" class="absolute top-20 right-[-100px] w-[130%] opacity-30 map-overlay z-10" alt="Map">
+        </div>
+
+        <!-- ADDRESS PANEL (Bottom Half) -->
+        <div class="bifold-half bg-white relative p-8">
+            <!-- Indicia -->
+            <div class="absolute top-6 right-6 border border-navy p-3 w-32 h-24 text-[0.7rem] text-center flex flex-col justify-center font-bold leading-normal">
+                PRESORTED<br>STANDARD<br>U.S. POSTAGE<br>PAID<br>ADSELL.AI
+            </div>
+
+            <!-- Return Address -->
+            <div class="absolute top-6 left-6 text-xs font-bold text-navy leading-relaxed">
+                AdSell.ai<br>
+                38 Mall Way #422<br>
+                West Sand Lake, NY 12196
+            </div>
+
+            <!-- Teaser Area (Left) -->
+            <div class="mt-24 w-1/2 pr-8">
+                <h2 class="text-3xl font-bold text-blue-600 mb-3">One platform.<br>One invoice.<br>Total control.</h2>
+                <div class="h-1 w-12 bg-green mb-4"></div>
+                <p class="text-sm text-slate-600">
+                    Stop managing dozens of separate vendors. Centralize your local print buying today.
+                </p>
+            </div>
+
+            <!-- Recipient Address Block (Right) -->
+            <div class="absolute bottom-20 right-6 w-[45%] h-32 bg-slate-50 rounded border border-slate-200 flex items-center justify-center">
+                <p class="text-slate-300 font-mono text-sm">[ Recipient Address ]</p>
+            </div>
+
+            <!-- Barcode Zone -->
+            <div class="absolute bottom-0 left-0 w-full h-12 bg-slate-100 border-t border-dashed border-slate-300 flex items-center justify-center">
+                 <span class="text-[0.6rem] text-slate-400 tracking-widest">BARCODE CLEAR ZONE</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- INSIDE (Top: Workflow, Bottom: Details) -->
+    <div class="bifold-vertical-sheet">
+        
+        <!-- TOP HALF: Workflow & Map -->
+        <div class="bifold-half bg-white p-8 grid grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-2xl font-bold text-navy mb-1">How It Works</h2>
+                <p class="text-sm text-slate-500 mb-6">Streamlined for modern marketers.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center shrink-0">1</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Select Markets</h4>
+                            <p class="text-xs text-slate-500">Filter by demographic, geo, or interest.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center shrink-0">2</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Submit Once</h4>
+                            <p class="text-xs text-slate-500">One creative upload sends to all pubs.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center shrink-0">3</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Optimize</h4>
+                            <p class="text-xs text-slate-500">Track performance in one dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-navy rounded-xl overflow-hidden p-6 flex flex-col">
+                <h3 class="text-white font-bold text-lg relative z-20">Nationwide Coverage</h3>
+                <img src="us_news_map_transparent_4000x2400_map_crisp.png" class="absolute inset-0 w-full h-full object-contain map-overlay z-10 opacity-60">
+                <div class="mt-auto relative z-20 grid grid-cols-2 gap-2">
+                    <div class="bg-white/10 backdrop-blur p-2 rounded border border-white/20">
+                        <p class="text-green font-bold text-lg">~5,400</p>
+                        <p class="text-[0.6rem] text-white">Publications</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur p-2 rounded border border-white/20">
+                        <p class="text-green font-bold text-lg">50</p>
+                        <p class="text-[0.6rem] text-white">States</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM HALF: Stats & CTA -->
+        <div class="bifold-half bg-light-gray p-8 flex flex-col justify-center">
+            
+            <div class="grid grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-4 rounded shadow-sm border-t-4 border-green">
+                    <p class="text-3xl font-black text-navy">82%</p>
+                    <p class="text-xs text-slate-500 font-semibold mt-1">Trust Print Ads</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-sm border-t-4 border-green">
+                    <p class="text-3xl font-black text-navy">9x</p>
+                    <p class="text-xs text-slate-500 font-semibold mt-1">Response Rate</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-sm border-t-4 border-green">
+                    <p class="text-3xl font-black text-navy">125%</p>
+                    <p class="text-xs text-slate-500 font-semibold mt-1">ROI on Print</p>
+                </div>
+            </div>
+
+            <div class="bg-navy rounded-2xl p-6 flex items-center justify-between text-white">
+                <div>
+                    <h3 class="text-2xl font-bold mb-1">Start your campaign.</h3>
+                    <p class="text-blue-200 text-sm">No agency fees. No credit card required.</p>
+                </div>
+                <div class="flex items-center gap-4 bg-white/10 p-3 rounded-lg backdrop-blur-sm border border-white/10">
+                    <img src="Untitled (300 x 300 px).png" class="w-16 h-16 rounded bg-white p-1">
+                    <div class="text-right">
+                        <p class="font-bold text-lg">adsell.ai</p>
+                        <p class="text-xs text-green">Sign up free &rarr;</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-slate-400 mt-6 font-medium">One platform. One submission. Multiple publications.</p>
+        </div>
+    </div>
+
+</body>
+</html>
